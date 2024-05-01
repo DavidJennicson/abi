@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Push Notification Demo</title>
+</head>
+<body>
+    <h1>Push Notification Demo</h1>
+    <button onclick="subscribe()">Subscribe to Push Notifications</button>
+    <button onclick="sendNotification()">Send Test Notification</button>
+
+    <script>
+        // Check if service workers are supported
+        if ('serviceWorker' in navigator) {
+            // Register service worker
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(function(registration) {
+                    console.log('Service Worker registered:', registration);
+                })
+                .catch(function(error) {
+                    console.error('Service Worker registration failed:', error);
+                });
+        } else {
+            console.log('Service workers are not supported in this browser');
+        }
+
+        async function subscribe() {
+            try {
+                const subscription = await navigator.serviceWorker.ready.then(reg => reg.pushManager.subscribe({ userVisibleOnly: true }));
+                console.log('Subscription:', subscription);
+                // Send subscription info to server
+                fetch('/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(subscription)
+                });
+            } catch (error) {
+                console.error('Failed to subscribe:', error);
+            }
+        }
+
+        async function sendNotification() {
+            try {
+                // Send test notification to server
+                const response = await fetch('/send-notification', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: 'Test Notification' })
+                });
+                const data = await response.json();
+                console.log('Notification response:', data);
+            } catch (error) {
+                console.error('Failed to send notification:', error);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+[
+    {
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcKWFt9QPCtsTjY6jupFqAQpHFeYrL6A-XSNSJTdXvXQ&s",
+      "name": "Paneer Tikka",
+      "price": "199",
+      "restaurant": "Taste of India",
+      "rating": 4.6
+    },
+    {
+      "image": "https://www.licious.in/blog/wp-content/uploads/2020/10/butter-chicken--600x600.jpg",
+      "name": "Butter Chicken",
+      "price": "299",
+      "restaurant": "Spice Route",
+      "rating": 4.8
+    },
+    {
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiT-YMW8dFSQyTBFF17NePYuCVn9aIabUHuv0tecCkKQ&s",
+      "name": "Masala Dosa",
+      "price": "149",
+      "restaurant": "Dosa Corner",
+      "rating": 4.4
+    },
+    {
+      "image": "https://glebekitchen.com/wp-content/uploads/2019/12/chickenbiryanibowltop-500x375.jpg",
+      "name": "Chicken Biryani",
+      "price": "299",
+      "restaurant": "Biryani House",
+      "rating": 4.7
+    },
+    {
+      "image": "https://example.com/aloo_paratha.jpg",
+      "name": "Aloo Paratha",
+      "price": "99",
+      "restaurant": "Paratha Paradise",
+      "rating": 4.5
+    },
+    {
+      "image": "https://example.com/chole_bhature.jpg",
+      "name": "Chole Bhature",
+      "price": "149",
+      "restaurant": "Street Chaat",
+      "rating": 4.3
+    }
+  ]
+  
