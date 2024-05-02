@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button"
-import { toast } from "sonner"; // Import toast from Sonner
 import {
   Card,
   CardContent,
@@ -10,24 +9,20 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useNavigate } from 'react-router-dom';
-
- 
-export function SignupForm() {
+export function RSignupForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
+  const [resName, setresName] = useState('');
   const [lastName, setLastName] = useState('');
   const [mobile, setMobile] = useState('');
   const [address, setAddress] = useState('');
-const[message,setMessage]= useState('');
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const handleSubmit = () => {
     // Construct the request body
     const requestBody = {
       email: email,
       password: password,
-      firstName: firstName,
-      lastName: lastName,
+     name:resName,
       mobile: mobile,
       address: address,
     };
@@ -36,7 +31,7 @@ const navigate = useNavigate();
     const requestBodyJSON = JSON.stringify(requestBody);
   
     // Make a POST request to the server
-    fetch('http://127.0.0.1:5000/signup', {
+    fetch('http://127.0.0.1:5000/restaurant/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -45,20 +40,17 @@ const navigate = useNavigate();
     })
     .then(response => {
       if (response.ok) {
-        console.log('User created successfully');
-        // Display success message
-     setMessage('Account Successful')
-    navigate('/foodsearch')
+        console.log('Restaurant created successfully');
+        navigate('/resdash');
+        // Add further logic for successful form submission if needed
       } else {
         console.error('Failed to create user');
-        // Display error message
-        toast.error('Invalid username or password');
+        // Add further logic for failed form submission if needed
       }
     })
     .catch(error => {
       console.error('Error:', error);
-      // Display error message
-      toast.error('An error occurred while processing your request');
+      // Add further error handling logic if needed
     });
   };
   
@@ -70,16 +62,12 @@ const navigate = useNavigate();
     setPassword(e.target.value);
   };
 
-  const handleFirstNameChange = (e) => {
-    setFirstName(e.target.value);
-  };
-
-  const handleLastNameChange = (e) => {
-    setLastName(e.target.value);
+  const handleresNameChange = (e) => {
+    setresName(e.target.value);
   };
 
   const handleMobileChange = (e) => {
-    console.log(e.target.value)
+    
     setMobile(e.target.value);
   };
 
@@ -91,11 +79,9 @@ const navigate = useNavigate();
     <div className="flex items-center justify-center h-screen">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-xl">Sign Up</CardTitle>
+          <CardTitle className="text-xl"> Restaurant Sign Up</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className='text-lg text-color-green'>{message}</p>
-          <br />
           <div className="grid gap-4">
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
@@ -119,25 +105,17 @@ const navigate = useNavigate();
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="first-name">First name</Label>
+              <Label htmlFor="res-name">  Restaurant name</Label>
               <Input
-                id="first-name"
-                placeholder="Max"
-                value={firstName}
-                onChange={handleFirstNameChange}
+                id="name"
+                placeholder="Name"
+                value={resName}
+                onChange={handleresNameChange}
                 required
               />
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="last-name">Last name</Label>
-              <Input
-                id="last-name"
-                placeholder="Robinson"
-                value={lastName}
-                onChange={handleLastNameChange}
-                required
-              />
-            </div>
+           
+        
             <div className="grid gap-2">
               <Label htmlFor="mobile">Mobile number</Label>
               <Input

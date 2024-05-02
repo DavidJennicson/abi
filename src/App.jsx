@@ -9,16 +9,25 @@ import CombinedComponent from './components/com/CombinedComponent'
 import Component from './components/com/Component'
 import PDashboard from './components/com/PDashboard'
 import { SignupForm } from './components/com/SignupForm'
-
-
+import { RSignupForm } from './components/com/RSignupform'
+import RLoginForm from './components/com/RLoginForm'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-<PDashboard/>
-    </>
+<Router>
+  <Routes>
+    <Route path="/" element={<FoodOrderHeroSection/>} />
+    <Route path="/resdash" element={<PDashboard/>}/>
+    <Route path="/signup" element={<SignupForm/>}/>
+    <Route path='/foodsearch' element={<FoodSearchPage/>} />
+  </Routes>
+</Router>
+
+</>
   )
 }
 
